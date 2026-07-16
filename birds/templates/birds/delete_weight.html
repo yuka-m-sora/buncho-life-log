@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ bird.name }}の体重削除</title>
+</head>
+<body>
+    <h1>体重記録を削除しますか？</h1>
+
+    <p>
+        {{ weight_record.date }}：
+        {{ weight_record.weight|floatformat:1 }}g
+        {% if weight_record.memo %}
+            （{{ weight_record.memo }}）
+        {% endif %}
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">削除する</button>
+    </form>
+
+    <p>
+        <a href="{% url 'bird_detail' bird.id %}">戻る</a>
+    </p>
+</body>
+</html>

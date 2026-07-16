@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>文鳥ライフログ</title>
+</head>
+<body>
+    <h1>文鳥ライフログ</h1>
+    <p>まろんとらいちの記録アプリ</p>
+
+    <h2>登録している文鳥</h2>
+
+{% for bird in birds %}
+    <p>
+        <a href="{% url 'bird_detail' bird.id %}">
+            {{ bird.name }}
+        </a>
+        / {{ bird.color }} / {{ bird.gender }}
+    </p>
+{% empty %}
+    <p>まだ文鳥が登録されていません。</p>
+{% endfor %}
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ bird.name }}の記録</title>
+</head>
+<body>
+    <h1>{{ bird.name }}の記録</h1>
+
+    <p>種類：{{ bird.color }}</p>
+    <p>性別：{{ bird.gender }}</p>
+    <p>誕生日：{{ bird.birthday }}</p>
+
+    <h2>体重履歴</h2>
+    <p>
+        <a href="{% url 'add_weight' bird.id %}">体重を追加する</a>
+    </p>
+    <h2>体重情報</h2>
+
+    {% if latest_weight %}
+        <p>最新体重：{{ latest_weight.weight|floatformat:1 }}g</p>
+    {% else %}
+        <p>体重記録なし</p>
+    {% endif %}
+
+    {% if average_weight %}
+        <p>平均体重：{{ average_weight|floatformat:1 }}g</p>
+    {% endif %}
+
+    {% if max_weight %}
+        <p>最高体重：{{ max_weight|floatformat:1 }}g</p>
+    {% endif %}
+
+    {% if min_weight %}
+        <p>最低体重：{{ min_weight|floatformat:1 }}g</p>
+    {% endif %}
+
+    <p>記録回数：{{ record_count }}回</p>
+
+    <h2>体重推移グラフ</h2>
+
+    <canvas id="weightChart" width="400" height="200"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const labels = {{ graph_labels|safe }};
+        const data = {{ graph_data|safe }};
+
+        const ctx = document.getElementById('weightChart');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '体重(g)',
+                    data: data,
+                    tension: 0.2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    </script>
+
+    {% for weight in weights %}
+        <p>
+            {{ weight.date }}：
+            {{ weight.weight|floatformat:1 }}g
+            {% if weight.memo %}
+                （{{ weight.memo }}）
+            {% endif %}
+
+            <a href="{% url 'edit_weight' weight.id %}">編集</a>
+            <a href="{% url 'delete_weight' weight.id %}">削除</a>
+        </p>
+    {% empty %}
+        <p>まだ体重記録がありません。</p>
+    {% endfor %}
+    <p>
+        <a href="{% url 'home' %}">トップへ戻る</a>
+    </p>
+</body>
+</html>
