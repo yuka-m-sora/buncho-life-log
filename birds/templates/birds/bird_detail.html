@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ bird.name }}の記録</title>
-</head>
-<body>
+{% extends 'birds/base.html' %}
+
+{% block title %}
+{{ bird.name }}の記録
+{% endblock %}
+
+{% block content %}
+
     <h1>{{ bird.name }}の記録</h1>
 
     <p>種類：{{ bird.color }}</p>
@@ -107,5 +108,4 @@
     <p>
         <a href="{% url 'home' %}">トップへ戻る</a>
     </p>
-</body>
-</html>
+{% endblock %}

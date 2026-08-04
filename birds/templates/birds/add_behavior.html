@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ bird.name }}の行動記録追加</title>
-</head>
-<body>
+{% extends 'birds/base.html' %}
+
+{% block title %}
+行動記録追加
+{% endblock %}
+
+{% block content %}
 
     <h1>{{ bird.name }}の行動記録追加</h1>
 
@@ -24,5 +24,4 @@
         </a>
     </p>
 
-</body>
-</html>
+{% endblock %}
