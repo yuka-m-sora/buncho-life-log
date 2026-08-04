@@ -15,6 +15,7 @@
     <p>
         <a href="{% url 'add_weight' bird.id %}">体重を追加する</a>
     </p>
+
     <h2>体重情報</h2>
 
     {% if latest_weight %}
@@ -82,6 +83,26 @@
         </p>
     {% empty %}
         <p>まだ体重記録がありません。</p>
+    {% endfor %}
+    <h2>行動記録</h2>
+    <p>
+        <a href="{% url 'add_behavior' bird.id %}">
+            行動記録を追加する
+        </a>
+    </p>
+    {% for behavior in behaviors %}
+        <div>
+            <p>
+                {{ behavior.date }}
+                【{{ behavior.category }}】
+            </p>
+            <p>
+                {{ behavior.memo }}
+            </p>
+            <hr>
+        </div>
+    {% empty %}
+        <p>まだ行動記録がありません。</p>
     {% endfor %}
     <p>
         <a href="{% url 'home' %}">トップへ戻る</a>

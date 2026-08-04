@@ -13,6 +13,10 @@ def bird_detail(request, bird_id):
 
     # 体重履歴表示用は新しい順
     weights = WeightRecord.objects.filter(bird=bird).order_by('-date')
+    # 行動記録は新しい順に表示
+    behaviors = BehaviorRecord.objects.filter(
+        bird=bird
+    ).order_by('-date', '-id')
     # グラフ表示用は日付昇順で取得
     graph_weights = WeightRecord.objects.filter(bird=bird).order_by('date')
 
@@ -28,6 +32,7 @@ def bird_detail(request, bird_id):
     return render(request, 'birds/bird_detail.html', {
         'bird': bird,
         'weights': weights,
+        'behaviors': behaviors,
         'latest_weight': latest_weight,
         'average_weight': average_weight,
         'max_weight': max_weight,
@@ -101,6 +106,8 @@ def add_behavior(request, bird_id):
                 'bird_detail',
                 bird_id=bird.id
             )
+        else:
+            print(form.errors)
 
     else:
         form = BehaviorRecordForm()
