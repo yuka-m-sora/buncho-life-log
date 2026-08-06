@@ -121,3 +121,43 @@ def add_behavior(request, bird_id):
         }
     )
 
+def edit_behavior(request, behavior_id):
+    behavior = get_object_or_404(BehaviorRecord, id=behavior_id)
+    bird = behavior.bird
+
+    if request.method == 'POST':
+        form = BehaviorRecordForm(request.POST, instance=behavior)
+
+        if form.is_valid():
+            form.save()
+            return redirect('bird_detail', bird_id=bird.id)
+
+    else:
+        form = BehaviorRecordForm(instance=behavior)
+
+    return render(
+        request,
+        'birds/edit_behavior.html',
+        {
+            'bird': bird,
+            'form': form,
+            'behavior': behavior,
+        }
+    )
+
+def delete_behavior(request, behavior_id):
+    behavior = get_object_or_404(BehaviorRecord, id=behavior_id)
+    bird = behavior.bird
+
+    if request.method == 'POST':
+        behavior.delete()
+        return redirect('bird_detail', bird_id=bird.id)
+
+    return render(
+        request,
+        'birds/delete_behavior.html',
+        {
+            'bird': bird,
+            'behavior': behavior,
+        }
+    )

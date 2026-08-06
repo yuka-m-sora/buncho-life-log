@@ -100,6 +100,14 @@
             <p>
                 {{ behavior.memo }}
             </p>
+            <p>
+                <a href="{% url 'edit_behavior' behavior.id %}">
+                    編集
+                </a>
+                <a href="{% url 'delete_behavior' behavior.id %}">
+                    削除
+                </a>
+            </p>
             <hr>
         </div>
     {% empty %}

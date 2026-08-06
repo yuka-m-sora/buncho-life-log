@@ -33,6 +33,7 @@ class BehaviorRecord(models.Model):
 
     CATEGORY_CHOICES = [
         ('換羽', '換羽'),
+        ('発情', '発情'),
         ('健康', '健康'),
         ('通院', '通院'),
         ('放鳥', '放鳥'),

@@ -1,0 +1,26 @@
+{% extends 'birds/base.html' %}
+
+{% block title %}
+行動記録編集
+{% endblock %}
+
+{% block content %}
+
+<h2>{{ bird.name }} の行動記録編集</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">
+        更新
+    </button>
+</form>
+
+<p>
+    <a href="{% url 'bird_detail' bird.id %}">
+        戻る
+    </a>
+</p>
+
+{% endblock %}
