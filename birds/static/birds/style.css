@@ -1,0 +1,265 @@
+body {
+    background-color: #fffaf7;
+    color: #333;
+}
+
+header {
+    background-color: #ffffff;
+}
+
+.main-card {
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(70, 55, 45, 0.08);
+}
+
+.summary-card {
+    border-radius: 14px;
+    padding: 18px;
+    border: 1px solid transparent;
+}
+
+.summary-latest {
+    background-color: #f1f7ff;
+    border-color: #d8e8fa;
+}
+
+.summary-average {
+    background-color: #f2faf3;
+    border-color: #dceedd;
+}
+
+.summary-max {
+    background-color: #fff8ed;
+    border-color: #f5e4c5;
+}
+
+.summary-min {
+    background-color: #fff2f4;
+    border-color: #f3d9de;
+}
+
+.summary-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #6b625d;
+    margin-bottom: 8px;
+}
+
+.summary-value {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0;
+    letter-spacing: 0.02em;
+}
+
+.summary-card {
+    border-radius: 14px;
+    padding: 18px;
+    border: 1px solid transparent;
+    transition: 0.2s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(70, 55, 45, 0.12);
+}
+
+.bird-profile {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 26px;
+    background-color: #ffffff;
+}
+
+.bird-profile-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    height: 88px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: #f7eee8;
+    font-size: 2.7rem;
+}
+
+.bird-profile-content {
+    min-width: 0;
+}
+
+.bird-name {
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.bird-type-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border: 1px solid #f2cfd3;
+    border-radius: 999px;
+    background-color: #fff0f2;
+    color: #c76670;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.bird-profile-item {
+    margin-bottom: 8px;
+    color: #5f5752;
+}
+
+.profile-symbol {
+    display: inline-block;
+    width: 28px;
+    color: #d77b86;
+    font-weight: 700;
+}
+
+@media (max-width: 576px) {
+    .bird-profile {
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .bird-profile-icon {
+        width: 68px;
+        height: 68px;
+        font-size: 2rem;
+    }
+
+    .bird-name {
+        font-size: 1.7rem;
+    }
+}
+
+.app-btn,
+.app-btn-outline {
+    padding: 8px 18px;
+    font-size: 0.95rem;
+}
+
+.app-btn:hover {
+
+    background-color: #68a7f5;
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+.app-btn-outline:hover {
+
+    background-color: #eef6ff;
+
+    color: #68a7f5;
+}
+
+.record-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid #eee7e2;
+}
+
+.record-item:last-child {
+    border-bottom: none;
+}
+
+.record-memo {
+    color: #756c66;
+}
+
+.record-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.record-edit-btn,
+.record-delete-btn {
+    padding: 5px 12px;
+    font-size: .85rem;
+}
+
+.record-edit-btn {
+    border: 1px solid #9ebfe5;
+    background-color: #f2f7fd;
+    color: #4f7faf;
+}
+
+.record-edit-btn:hover {
+    background-color: #e3effb;
+    color: #3e6f9f;
+}
+
+.record-delete-btn {
+    border: 1px solid #e8b4bc;
+    background-color: #fff4f5;
+    color: #c56672;
+}
+
+.record-delete-btn:hover {
+    background-color: #fde6e9;
+    color: #ad4f5d;
+}
+
+@media (max-width: 576px) {
+    .record-item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+.behavior-card .card-body {
+    padding: 16px 20px;
+}
+.behavior-card {
+    border-radius: 18px;
+    border: 1px solid #ece8e4 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,.03);
+}
+.behavior-badge {
+    background: #fff5f7;
+    color: #d86d83;
+    border: 1px solid #f3c8d0;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-weight: 600;
+}
+
+.chart-wrapper {
+    position: relative;
+    min-height: 360px;
+}
+
+.weight-record-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    padding: 14px 18px;
+    margin-bottom: 10px;
+
+    background-color: #ffffff;
+    border: 1px solid #eee8e3;
+    border-radius: 14px;
+
+    box-shadow: 0 2px 6px rgba(70, 55, 45, 0.03);
+}
+
+.weight-record-memo {
+    color: #756c66;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 576px) {
+    .weight-record-item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

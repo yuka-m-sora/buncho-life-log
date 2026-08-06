@@ -24,7 +24,7 @@ def bird_detail(request, bird_id):
     average_weight = weights.aggregate(Avg('weight'))['weight__avg']
     max_weight = weights.aggregate(Max('weight'))['weight__max']
     min_weight = weights.aggregate(Min('weight'))['weight__min']
-    record_count = weights.count()
+    weight_count = weights.count()
 
     graph_labels = [record.date.strftime('%Y-%m-%d') for record in graph_weights]
     graph_data = [float(record.weight) for record in graph_weights]
@@ -37,7 +37,7 @@ def bird_detail(request, bird_id):
         'average_weight': average_weight,
         'max_weight': max_weight,
         'min_weight': min_weight,
-        'record_count': record_count,
+        'weight_count': weight_count,
         'graph_labels': graph_labels,
         'graph_data': graph_data,
     })
