@@ -6,21 +6,51 @@
 
 {% block content %}
 
-<h2>{{ bird.name }} の行動記録編集</h2>
+<div class="form-page">
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
+    <div class="form-header">
+        <h2>✏️ {{ bird.name }}の行動記録を編集</h2>
+        <p>記録した内容を修正できます。</p>
+    </div>
 
-    <button type="submit">
-        更新
-    </button>
-</form>
+    <div class="record-form-card">
 
-<p>
-    <a href="{% url 'bird_detail' bird.id %}">
-        戻る
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="mb-4">
+                <label for="{{ form.date.id_for_label }}" class="form-label">
+                    📅 日付
+                </label>
+                {{ form.date }}
+            </div>
+
+            <div class="mb-4">
+                <label for="{{ form.category.id_for_label }}" class="form-label">
+                    🏷️ カテゴリ
+                </label>
+                {{ form.category }}
+            </div>
+
+            <div class="mb-4">
+                <label for="{{ form.memo.id_for_label }}" class="form-label">
+                    📝 メモ
+                </label>
+                {{ form.memo }}
+            </div>
+
+            <button type="submit" class="record-submit-btn">
+                更新する
+            </button>
+
+        </form>
+
+    </div>
+
+    <a href="{% url 'bird_detail' bird.id %}" class="form-back-link">
+        ← {{ bird.name }}の記録に戻る
     </a>
-</p>
+
+</div>
 
 {% endblock %}

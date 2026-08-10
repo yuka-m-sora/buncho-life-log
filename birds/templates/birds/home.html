@@ -6,17 +6,50 @@
 
 {% block content %}
 
-    <h2>登録している文鳥</h2>
+<h2 class="mb-4">登録している文鳥</h2>
+
+<div class="bird-list">
 
     {% for bird in birds %}
-        <p>
-            <a href="{% url 'bird_detail' bird.id %}">
-                {{ bird.name }}
-            </a>
-            / {{ bird.color }} / {{ bird.gender }}
-        </p>
+
+        <a href="{% url 'bird_detail' bird.id %}"
+           class="bird-card text-decoration-none">
+
+            <div class="bird-icon">
+                🐦
+            </div>
+
+            <div class="bird-info">
+                <div class="bird-name-row">
+                    <h3>{{ bird.name }}</h3>
+                    <span class="bird-type">
+                        {{ bird.color }}
+                    </span>
+                </div>
+
+                <p class="bird-gender">
+                    {% if bird.gender == "メス" %}
+                        ♀ {{ bird.gender }}
+                    {% elif bird.gender == "オス" %}
+                        ♂ {{ bird.gender }}
+                    {% else %}
+                        {{ bird.gender }}
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="bird-card-arrow">
+                ›
+            </div>
+
+        </a>
+
     {% empty %}
+
         <p>まだ文鳥が登録されていません。</p>
+
     {% endfor %}
+
+</div>
 
 {% endblock %}

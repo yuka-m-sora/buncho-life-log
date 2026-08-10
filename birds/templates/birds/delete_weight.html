@@ -5,22 +5,50 @@
 {% endblock %}
 
 {% block content %}
-    <h1>体重記録を削除しますか？</h1>
 
-    <p>
-        {{ weight_record.date }}：
-        {{ weight_record.weight|floatformat:1 }}g
-        {% if weight_record.memo %}
-            （{{ weight_record.memo }}）
-        {% endif %}
-    </p>
+<div class="form-page">
 
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">削除する</button>
-    </form>
+    <div class="form-header">
+        <h2>🗑️ 体重記録を削除</h2>
+        <p>この記録を削除してもよいですか？</p>
+    </div>
 
-    <p>
-        <a href="{% url 'bird_detail' bird.id %}">戻る</a>
-    </p>
+    <div class="delete-card">
+
+        <div class="delete-record">
+            <p class="mb-2">
+                📅 {{ weight_record.date|date:"Y/m/d" }}
+            </p>
+
+            <p class="delete-weight mb-2">
+                ⚖️ {{ weight_record.weight|floatformat:1 }} g
+            </p>
+
+            {% if weight_record.memo %}
+                <p class="delete-memo mb-0">
+                    📝 {{ weight_record.memo }}
+                </p>
+            {% endif %}
+        </div>
+
+        <p class="delete-warning">
+            ⚠️ 削除した記録は元に戻せません。
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <button type="submit" class="delete-confirm-btn">
+                削除する
+            </button>
+        </form>
+
+    </div>
+
+    <a href="{% url 'bird_detail' bird.id %}" class="form-back-link">
+        ← 削除せずに戻る
+    </a>
+
+</div>
+
 {% endblock %}

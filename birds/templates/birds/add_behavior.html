@@ -1,27 +1,57 @@
 {% extends 'birds/base.html' %}
 
 {% block title %}
-行動記録追加
+行動記録削除
 {% endblock %}
 
 {% block content %}
 
-    <h1>{{ bird.name }}の行動記録追加</h1>
+<div class="form-page">
 
-    <form method="post">
-        {% csrf_token %}
+    <div class="form-header">
+        <h2>🗑️ 行動記録を削除</h2>
+        <p>この記録を削除してもよいですか？</p>
+    </div>
 
-        {{ form.as_p }}
+    <div class="delete-card">
 
-        <button type="submit">
-            保存
-        </button>
-    </form>
+        <div class="delete-record">
 
-    <p>
-        <a href="{% url 'bird_detail' bird.id %}">
-            戻る
-        </a>
-    </p>
+            <p class="mb-2">
+                📅 {{ behavior.date|date:"Y/m/d" }}
+            </p>
+
+            <p class="mb-2">
+                🏷️ {{ behavior.category }}
+            </p>
+
+            {% if behavior.memo %}
+                <p class="delete-memo mb-0">
+                    📝 {{ behavior.memo }}
+                </p>
+            {% endif %}
+
+        </div>
+
+        <p class="delete-warning">
+            ⚠️ 削除した記録は元に戻せません。
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <button type="submit" class="delete-confirm-btn">
+                削除する
+            </button>
+        </form>
+
+    </div>
+
+    <a href="{% url 'bird_detail' bird.id %}"
+       class="form-back-link">
+        ← 削除せずに戻る
+    </a>
+
+</div>
 
 {% endblock %}

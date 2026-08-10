@@ -263,3 +263,270 @@ header {
         flex-direction: column;
     }
 }
+
+/* =========================
+   ホーム画面：文鳥カード
+========================= */
+
+.bird-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.bird-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    background: #ffffff;
+    border: 1px solid #eee8e3;
+    border-radius: 20px;
+    padding: 24px;
+
+    color: #333;
+    box-shadow: 0 4px 14px rgba(70, 55, 45, 0.06);
+
+    transition: 0.2s;
+}
+
+.bird-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(70, 55, 45, 0.10);
+}
+
+.bird-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    background: #f8eee8;
+
+    font-size: 34px;
+}
+
+.bird-info {
+    flex: 1;
+}
+
+.bird-name-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.bird-name-row h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.bird-type {
+    padding: 4px 10px;
+
+    background: #fff0f2;
+    color: #d66b78;
+
+    border: 1px solid #f5d3d8;
+    border-radius: 20px;
+
+    font-size: 0.85rem;
+}
+
+.bird-gender {
+    margin: 8px 0 0;
+    color: #6f6762;
+}
+
+.bird-card-arrow {
+    color: #aaa;
+    font-size: 2rem;
+}
+
+/* スマホでは1列 */
+@media (max-width: 768px) {
+    .bird-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================
+   記録フォーム
+========================= */
+
+.form-page {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.form-header {
+    margin-bottom: 24px;
+}
+
+.form-header h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.form-header p {
+    color: #756c66;
+    margin-bottom: 0;
+}
+
+.record-form-card {
+    background-color: #ffffff;
+    border: 1px solid #eee8e3;
+    border-radius: 20px;
+    padding: 30px;
+
+    box-shadow: 0 5px 18px rgba(70, 55, 45, 0.06);
+}
+
+.record-form-card .form-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #5f5752;
+    font-weight: 600;
+}
+
+/* 入力欄を共通デザインにする */
+.record-form-card input,
+.record-form-card select,
+.record-form-card textarea {
+    width: 100%;
+
+    padding: 11px 14px;
+
+    border: 1px solid #ddd5cf;
+    border-radius: 12px;
+
+    background-color: #fffdfa;
+
+    font-size: 1rem;
+
+    transition: 0.2s;
+}
+
+/* 入力欄を選択した時 */
+.record-form-card input:focus,
+.record-form-card select:focus,
+.record-form-card textarea:focus {
+    outline: none;
+
+    border-color: #e8a9b3;
+
+    box-shadow: 0 0 0 3px rgba(232, 169, 179, 0.15);
+
+    background-color: #ffffff;
+}
+
+/* メモ欄 */
+.record-form-card textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+/* 保存ボタン */
+.record-submit-btn {
+    width: 100%;
+
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 999px;
+
+    background-color: #e89aa7;
+    color: #ffffff;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.record-submit-btn:hover {
+    background-color: #dc8795;
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 12px rgba(216, 120, 135, 0.18);
+}
+
+/* 戻るリンク */
+.form-back-link {
+    display: inline-block;
+    margin-top: 20px;
+
+    color: #756c66;
+    text-decoration: none;
+}
+
+.form-back-link:hover {
+    color: #d17684;
+}
+
+/* =========================
+   削除確認画面
+========================= */
+
+.delete-card {
+    padding: 30px;
+
+    background-color: #ffffff;
+    border: 1px solid #f0dddd;
+    border-radius: 20px;
+
+    box-shadow: 0 5px 18px rgba(70, 55, 45, 0.06);
+}
+
+.delete-record {
+    padding: 18px;
+
+    background-color: #fffaf9;
+    border-radius: 14px;
+}
+
+.delete-weight {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.delete-memo {
+    color: #756c66;
+}
+
+.delete-warning {
+    margin: 24px 0 16px;
+
+    color: #b85f68;
+    font-size: 0.9rem;
+}
+
+.delete-confirm-btn {
+    width: 100%;
+
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 999px;
+
+    background-color: #d97882;
+    color: #ffffff;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.delete-confirm-btn:hover {
+    background-color: #c86670;
+    transform: translateY(-2px);
+}
