@@ -1,7 +1,7 @@
 {% extends 'birds/base.html' %}
 
 {% block title %}
-行動記録削除
+行動記録追加
 {% endblock %}
 
 {% block content %}
@@ -9,47 +9,46 @@
 <div class="form-page">
 
     <div class="form-header">
-        <h2>🗑️ 行動記録を削除</h2>
-        <p>この記録を削除してもよいですか？</p>
+        <h2>📝 {{ bird.name }}の行動を記録</h2>
+        <p>その日の様子や気になった行動を記録できます。</p>
     </div>
 
-    <div class="delete-card">
-
-        <div class="delete-record">
-
-            <p class="mb-2">
-                📅 {{ behavior.date|date:"Y/m/d" }}
-            </p>
-
-            <p class="mb-2">
-                🏷️ {{ behavior.category }}
-            </p>
-
-            {% if behavior.memo %}
-                <p class="delete-memo mb-0">
-                    📝 {{ behavior.memo }}
-                </p>
-            {% endif %}
-
-        </div>
-
-        <p class="delete-warning">
-            ⚠️ 削除した記録は元に戻せません。
-        </p>
+    <div class="record-form-card">
 
         <form method="post">
             {% csrf_token %}
 
-            <button type="submit" class="delete-confirm-btn">
-                削除する
+            <div class="mb-4">
+                <label for="{{ form.date.id_for_label }}" class="form-label">
+                    📅 日付
+                </label>
+                {{ form.date }}
+            </div>
+
+            <div class="mb-4">
+                <label for="{{ form.category.id_for_label }}" class="form-label">
+                    🏷️ カテゴリ
+                </label>
+                {{ form.category }}
+            </div>
+
+            <div class="mb-4">
+                <label for="{{ form.memo.id_for_label }}" class="form-label">
+                    📝 メモ
+                </label>
+                {{ form.memo }}
+            </div>
+
+            <button type="submit" class="record-submit-btn">
+                保存する
             </button>
+
         </form>
 
     </div>
 
-    <a href="{% url 'bird_detail' bird.id %}"
-       class="form-back-link">
-        ← 削除せずに戻る
+    <a href="{% url 'bird_detail' bird.id %}" class="form-back-link">
+        ← {{ bird.name }}の記録に戻る
     </a>
 
 </div>
