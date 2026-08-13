@@ -8,7 +8,13 @@
 
     <div class="bird-profile main-card mb-4">
         <div class="bird-profile-icon">
-            🐦
+            {% if bird.photo %}
+                <img src="{{ bird.photo.url }}"
+                    alt="{{ bird.name }}"
+                    class="bird-profile-photo">
+            {% else %}
+                🐦
+            {% endif %}
         </div>
 
         <div class="bird-profile-content">
@@ -23,15 +29,63 @@
             </div>
 
             <p class="bird-profile-item">
-                <span class="profile-symbol">♀</span>
-                {{ bird.gender }}
+                {% if bird.gender == "メス" %}
+                    <span class="profile-symbol">♀</span>
+                    {{ bird.gender }}
+
+                {% elif bird.gender == "オス" %}
+                    <span class="profile-symbol">♂</span>
+                    {{ bird.gender }}
+
+                {% else %}
+                    <span class="profile-symbol">？</span>
+                    性別未登録
+                {% endif %}
             </p>
 
             <p class="bird-profile-item mb-0">
                 <span class="profile-symbol">🎂</span>
-                誕生日：
-                {{ bird.birthday|date:"Y年n月j日" }}
+
+                {% if bird.birthday %}
+                    誕生日：{{ bird.birthday|date:"Y年n月j日" }}
+                {% else %}
+                    誕生日：未登録
+                {% endif %}
             </p>
+
+            <p class="bird-profile-item">
+                <span class="profile-symbol">🐣</span>
+                年齢：
+                {{ bird.age_display }}
+            </p>
+
+            {% if bird.welcome_date %}
+            <p class="bird-profile-item mb-0">
+                <span class="profile-symbol">🏠</span>
+                お迎え日：
+                {{ bird.welcome_date|date:"Y年n月j日" }}
+            </p>
+            {% else %}
+            <p class="bird-profile-item mb-0">
+                <span class="profile-symbol">🏠</span>
+                お迎え日：未登録
+            </p>
+            {% endif %}
+
+            {% if bird.welcome_date %}
+            <p class="bird-profile-item mb-0">
+                <span class="profile-symbol">💕</span>
+                一緒に暮らして：
+                {{ bird.days_since_welcome }}日
+            </p>
+            {% endif %}
+
+            <a href="{% url 'bird_edit' bird.id %}" class="profile-edit-link">
+                ✏️ 編集
+            </a>
+            <a href="{% url 'bird_delete' bird.id %}" class="profile-delete-link">
+                🗑️ 削除
+            </a>
         </div>
     </div>
     <div class="d-flex align-items-center gap-3 mb-3">
@@ -112,6 +166,24 @@
                 📈 体重推移
             </h2>
 
+            <div class="chart-period-buttons mb-3">
+                <button type="button" class="period-btn" data-days="7">
+                    1週間
+                </button>
+
+                <button type="button" class="period-btn active" data-days="30">
+                    1か月
+                </button>
+
+                <button type="button" class="period-btn" data-days="90">
+                    3か月
+                </button>
+
+                <button type="button" class="period-btn" data-days="all">
+                    全期間
+                </button>
+            </div>
+
             <div class="chart-wrapper">
                 <canvas id="weightChart"></canvas>
             </div>
@@ -122,32 +194,11 @@
 
     <script>
         const labels = {{ graph_labels|safe }};
-        const data = {{ graph_data|safe }};
-
-        const ctx = document.getElementById('weightChart');
-
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: '体重(g)',
-                    data: data,
-                    tension: 0.2
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-
-                scales: {
-                    y: {
-                        beginAtZero: false
-                    }
-                }
-            }
-        });
+        const weightData = {{ graph_data|safe }};
     </script>
+
+    {% load static %}
+    <script src="{% static 'birds/js/weight_chart.js' %}"></script>
 
     {% for weight in weights %}
 
@@ -241,6 +292,14 @@
             <p class="mt-3 mb-0">
                 {{ behavior.memo }}
             </p>
+
+            {% if behavior.photo %}
+                <div class="behavior-photo-wrapper mt-3">
+                    <img src="{{ behavior.photo.url }}"
+                        alt="{{ behavior.category }}の記録写真"
+                        class="behavior-photo">
+                </div>
+            {% endif %}
 
         </div>
     </div>

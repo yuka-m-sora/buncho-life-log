@@ -1,0 +1,63 @@
+{% extends 'birds/base.html' %}
+
+{% block title %}
+文鳥プロフィール削除
+{% endblock %}
+
+{% block content %}
+
+<div class="form-page">
+
+    <div class="form-header">
+        <h2>🗑️ {{ bird.name }}を削除</h2>
+        <p>この文鳥を削除してもよいですか？</p>
+    </div>
+
+    <div class="delete-card">
+
+        <div class="delete-record">
+
+            <p class="mb-2">
+                🐦 {{ bird.name }}
+            </p>
+
+            {% if bird.color %}
+                <p class="mb-2">
+                    🎨 {{ bird.color }}
+                </p>
+            {% endif %}
+
+            {% if bird.birthday %}
+                <p class="mb-2">
+                    🎂 {{ bird.birthday|date:"Y年n月j日" }}
+                </p>
+            {% endif %}
+
+        </div>
+
+        <p class="delete-warning">
+            ⚠️ この文鳥に登録されている体重記録や行動記録も削除されます。
+        </p>
+
+        <p class="delete-warning">
+            ⚠️ 削除したデータは元に戻せません。
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <button type="submit" class="delete-confirm-btn">
+                {{ bird.name }}を削除する
+            </button>
+        </form>
+
+    </div>
+
+    <a href="{% url 'bird_detail' bird.id %}"
+       class="form-back-link">
+        ← 削除せずに戻る
+    </a>
+
+</div>
+
+{% endblock %}

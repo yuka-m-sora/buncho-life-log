@@ -1,0 +1,77 @@
+{% extends 'birds/base.html' %}
+
+{% block title %}
+プロフィール編集
+{% endblock %}
+
+{% block content %}
+
+<div class="form-page">
+
+    <div class="form-header">
+        <h2>✏️ {{ bird.name }}のプロフィールを編集</h2>
+        <p>登録しているプロフィール情報を変更できます。</p>
+    </div>
+
+    <div class="record-form-card">
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="mb-4">
+                <label for="{{ form.name.id_for_label }}" class="form-label">
+                    🐦 名前
+                </label>
+                {{ form.name }}
+            </div>
+
+            <div class="mb-4">
+                <label for="{{ form.color.id_for_label }}" class="form-label">
+                    🎨 種類
+                </label>
+                {{ form.color }}
+            </div>
+
+            <div class="mb-4">
+                <label for="{{ form.gender.id_for_label }}" class="form-label">
+                    ⚥ 性別
+                </label>
+                {{ form.gender }}
+            </div>
+
+            <div class="mb-4">
+                <label for="{{ form.birthday.id_for_label }}" class="form-label">
+                    🎂 誕生日
+                </label>
+                {{ form.birthday }}
+            </div>
+
+            <div class="mb-4">
+                <label for="{{ form.welcome_date.id_for_label }}" class="form-label">
+                    🏠 お迎え日
+                </label>
+                {{ form.welcome_date }}
+            </div>
+
+            <div class="mb-4">
+                <label for="{{ form.photo.id_for_label }}" class="form-label">
+                    📷 プロフィール写真
+                </label>
+                {{ form.photo }}
+            </div>
+
+            <button type="submit" class="record-submit-btn">
+                更新する
+            </button>
+
+        </form>
+
+    </div>
+
+    <a href="{% url 'bird_detail' bird.id %}" class="form-back-link">
+        ← {{ bird.name }}の記録に戻る
+    </a>
+
+</div>
+
+{% endblock %}

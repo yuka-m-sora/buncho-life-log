@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Bird, WeightRecord, BehaviorRecord
-from .forms import WeightRecordForm, BehaviorRecordForm
+from .forms import BirdForm, WeightRecordForm, BehaviorRecordForm
 from django.db.models import Avg, Max, Min, Count
 
 
@@ -95,7 +95,7 @@ def add_behavior(request, bird_id):
     bird = get_object_or_404(Bird, id=bird_id)
 
     if request.method == 'POST':
-        form = BehaviorRecordForm(request.POST)
+        form = BehaviorRecordForm(request.POST, request.FILES)
 
         if form.is_valid():
             behavior = form.save(commit=False)
@@ -126,8 +126,7 @@ def edit_behavior(request, behavior_id):
     bird = behavior.bird
 
     if request.method == 'POST':
-        form = BehaviorRecordForm(request.POST, instance=behavior)
-
+        form = BehaviorRecordForm(request.POST, request.FILES, instance=behavior)
         if form.is_valid():
             form.save()
             return redirect('bird_detail', bird_id=bird.id)
@@ -159,5 +158,59 @@ def delete_behavior(request, behavior_id):
         {
             'bird': bird,
             'behavior': behavior,
+        }
+    )
+
+def bird_create(request):
+    if request.method == 'POST':
+        form = BirdForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            bird = form.save()
+            return redirect('bird_detail', bird_id=bird.id)
+
+    else:
+        form = BirdForm()
+
+    return render(
+        request,
+        'birds/bird_form.html',
+        {'form': form}
+    )
+
+def bird_edit(request, bird_id):
+    bird = get_object_or_404(Bird, id=bird_id)
+
+    if request.method == 'POST':
+        form = BirdForm(request.POST, request.FILES, instance=bird)
+
+        if form.is_valid():
+            form.save()
+            return redirect('bird_detail', bird_id=bird.id)
+
+    else:
+        form = BirdForm(instance=bird)
+
+    return render(
+        request,
+        'birds/bird_edit.html',
+        {
+            'form': form,
+            'bird': bird,
+        }
+    )
+
+def bird_delete(request, bird_id):
+    bird = get_object_or_404(Bird, id=bird_id)
+
+    if request.method == 'POST':
+        bird.delete()
+        return redirect('home')
+
+    return render(
+        request,
+        'birds/bird_delete.html',
+        {
+            'bird': bird,
         }
     )

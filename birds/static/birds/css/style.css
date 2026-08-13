@@ -73,20 +73,43 @@ header {
     background-color: #ffffff;
 }
 
+/* 文鳥プロフィール全体 */
+.bird-profile {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+/* 写真を入れる場所 */
 .bird-profile-icon {
+    width: 110px;
+    height: 110px;
+    flex-shrink: 0;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 88px;
-    height: 88px;
-    flex-shrink: 0;
+
     border-radius: 50%;
-    background-color: #f7eee8;
-    font-size: 2.7rem;
+    overflow: hidden;
+
+    background: #fff5f1;
+    font-size: 42px;
+    /* 少し上に移動 */
+    transform: translateY(-12px);
 }
 
+/* プロフィール写真 */
+.bird-profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* 右側のプロフィール情報 */
 .bird-profile-content {
-    min-width: 0;
+    flex: 1;
 }
 
 .bird-name {
@@ -231,6 +254,22 @@ header {
     font-weight: 600;
 }
 
+.behavior-photo-wrapper {
+    max-width: 320px;
+}
+
+.behavior-photo {
+    width: 100%;
+    height: 220px;
+
+    object-fit: cover;
+
+    border-radius: 14px;
+    border: 1px solid #eee8e3;
+
+    display: block;
+}
+
 .chart-wrapper {
     position: relative;
     min-height: 360px;
@@ -272,6 +311,13 @@ header {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+}
+
+.bird-list-photo {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .bird-card {
@@ -530,3 +576,69 @@ header {
     background-color: #c86670;
     transform: translateY(-2px);
 }
+
+/* 文鳥追加ボタン */
+.bird-add-btn {
+    padding: 9px 18px;
+
+    background-color: #e89aa7;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 999px;
+
+    font-weight: 600;
+}
+
+.bird-add-btn:hover {
+    background-color: #dc8795;
+    color: #ffffff;
+
+    transform: translateY(-2px);
+}
+
+/* =========================
+   グラフ期間切り替え
+========================= */
+
+.chart-period-buttons {
+    display: inline-flex;
+    gap: 4px;
+
+    padding: 5px;
+
+    background-color: #fff5f6;
+    border: 1px solid #f2dfe2;
+    border-radius: 16px;
+}
+
+.period-btn {
+    padding: 7px 15px;
+
+    border: none;
+    border-radius: 12px;
+
+    background-color: transparent;
+    color: #8a7d7a;
+
+    font-size: 0.85rem;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.period-btn:hover {
+    background-color: #ffffff;
+    color: #d67f8e;
+}
+
+.period-btn.active {
+    background-color: #ffffff;
+    color: #d67f8e;
+
+    font-weight: 600;
+
+    box-shadow: 0 2px 8px rgba(120, 80, 90, 0.10);
+}
+

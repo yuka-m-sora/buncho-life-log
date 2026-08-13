@@ -15,7 +15,7 @@
 
     <div class="record-form-card">
 
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <div class="mb-4">
@@ -37,6 +37,13 @@
                     📝 メモ
                 </label>
                 {{ form.memo }}
+            </div>
+
+            <div class="mb-4">
+                <label for="{{ form.photo.id_for_label }}" class="form-label">
+                    📷 写真
+                </label>
+                {{ form.photo }}
             </div>
 
             <button type="submit" class="record-submit-btn">
